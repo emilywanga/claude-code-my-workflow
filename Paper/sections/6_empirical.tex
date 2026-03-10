@@ -1,0 +1,186 @@
+
+\subsection{Identification Strategy}
+
+The empirical analysis exploits cross-county variation in land protection pressure to identify the effects of the 2017 tightening of cropland protection. Land protection pressure is constructed using pre-determined land-use characteristics and administrative constraints, as described in detail in Section~\ref{sec:data}. Intuitively, the national policy tightening constitutes a common shock, while cross-county differences in pressure reflect heterogeneity in how binding the policy is across locations. 
+
+The analysis proceeds in two complementary parts. First, I examine how cropland allocation evolves over time across counties facing different levels of land protection pressure, using an event-study design applied to all grid cells. This approach captures adjustments in cropland area following the policy tightening. Second, I focus on newly reclaimed land and study post-reclamation outcomes using a cohort-based difference-in-differences design. This second approach isolates adjustment along the intensive margin along two dimensions: the suitability of newly created cropland, as proxied by soil characteristics, and its subsequent utilization, as measured by fallow status or vegetation coverage. Together, the two designs allow for a comprehensive assessment of responses to tightened cropland protection along both the extensive and intensive margins.
+
+
+\subsubsection{Event-Study Design}
+
+To study the effects of the policy tightening on cropland allocation, I estimate a two-way fixed effects event-study specification that interacts land protection pressure with event-time indicators relative to 2017. The unit of observation is a grid cell $i$ located in county $c$ and observed in year $t$. The estimating equation is given by:
+
+\begin{equation}
+    \text{cropshare}_{ict}
+    =
+    \sum_{k \neq -1}
+    \beta_k
+    \big(
+        \text{Pressure}_{c} 
+        \times 
+        \text{Event}_{k,t}
+    \big)
+    +
+    \mu_i
+    +
+    \lambda_t
+    +
+    \varepsilon_{ict},
+\end{equation}
+
+where $\text{cropshare}_{ict}$ denotes the share of cropland in grid cell $i$ at time $t$. $\text{Pressure}_{c}$ measures county-level land protection pressure, and $\text{Event}_{k,t}$ is an indicator for event time $k$ relative to the policy tightening in 2017, with $k=-1$ omitted as the reference period. Grid fixed effects $\mu_i$ absorb time-invariant spatial heterogeneity, while year fixed effects $\lambda_t$ control for common shocks affecting all locations. By construction, grid fixed effects also absorb all time-invariant heterogeneity at higher administrative levels, including prefecture- and county-level characteristics.
+
+
+The coefficients $\beta_k$ trace out how cropland allocation responds over time to the policy tightening as a function of land protection pressure. Identification relies on the assumption that, absent the policy change, cropland trends would have evolved similarly across counties with different levels of land protection pressure.
+
+\subsubsection{Cohort-Based Difference-in-Differences for Newly Reclaimed Land}
+
+While the event-study design captures aggregate changes in cropland allocation, it does not directly address the suitability and subsequent use of newly created cropland. To study post-reclamation outcomes, I exploit variation across reclamation cohorts using a cohort-based difference-in-differences design.
+
+The sample is restricted to grid cells that transition into cropland during the sample period. Each grid cell $i$ is characterized by a reclamation year $t_0(i)$ and is observed for $s$ years after reclamation. The outcome variable $Y_{i,s}$ captures post-reclamation outcomes along two intensive-margin dimensions: the suitability of newly created cropland, as reflected in soil characteristics, and its subsequent utilization, as measured by indicators for fallow status or vegetation coverage.
+
+Treatment intensity is defined as
+\begin{equation}
+    W_i = \mathbf{1}\{t_0(i) \geq 2018\} \times \text{Pressure}_{c(i)},
+\end{equation}
+which captures differential exposure to the policy tightening interacted with local land protection pressure. The empirical model is:
+\begin{equation}
+    Y_{i,s}
+    =
+    \alpha_{c(i)} 
+    + 
+    \mu_{t_0(i)}
+    +
+    \delta_s
+    +
+    \beta W_i
+    +
+    X_i'\gamma
+    +
+    \varepsilon_{i,s},
+    \label{mod_cohort}
+\end{equation}
+where $\alpha_{c(i)}$ are county fixed effects, $\mu_{t_0(i)}$ are reclamation-cohort fixed effects, and $\delta_s$ are years-since-reclamation fixed effects. This specification compares post-reclamation outcomes across grids reclaimed before and after the policy tightening, within counties and relative to common post-reclamation dynamics.
+
+Identification in this design relies on the assumption that, absent the policy tightening, post-reclamation trajectories in both cropland suitability and land-use intensity would have evolved similarly across reclamation cohorts within a county, conditional on land protection pressure. Empirical evidence bearing on this assumption is presented in section~\ref{mainr}.
+
+
+
+\subsection{Main Results\label{mainr}}
+
+Figure~\ref{fig:es_cropshare} reports event-study estimates of how grid-level cropland share responds to land protection pressure around the policy change. The pre-policy coefficients are small and statistically indistinguishable from zero, indicating no evidence of differential pre-trends in cropland allocation across counties with different levels of land protection pressure prior to 2017. Following the policy tightening, cropland share increases significantly more in high-pressure counties, with the estimated coefficients turning positive and growing over time. This implies that grids in high-pressure counties are more likely to be converted into cropland after 2017. To facilitate interpretation of the magnitude, I normalize the land protection pressure index to have a standard deviation of one. A one-standard-deviation increase in land protection pressure is associated with a cumulative increase of approximately 0.7 percentage points in grid-level cropland share by 2022, with the gap emerging immediately after the 2017 policy tightening and widening over time.
+
+The next analysis turns to the intensive margin and examines the characteristics of newly reclaimed land. Table~\ref{tab:soil} reports estimates from Model~\ref{mod_cohort}, where the outcome variable measures soil suitability at the time of reclamation. Across specifications using both a continuous soil suitability index and an indicator for land suitable for cultivation (soil suitability $\geq 3$), the interaction between land protection pressure and the post-2017 indicator is negative and statistically significant. These estimates indicate that newly reclaimed land in high-pressure counties after the policy tightening is of lower agronomic quality. Using the binary suitability measure, the coefficient implies that newly reclaimed land in high-pressure counties after 2017 is 5.1 percentage points less likely to be suitable for cultivation, relative to a control mean of 59.6 percent, corresponding to an 8.5 percent increase in the likelihood that newly reclaimed land is unsuitable for agriculture. The results are robust to the inclusion of county-specific time-varying controls interacted with year, which absorb differential local trends. These findings indicate that the tightening of cropland protection is associated with land misallocation along the intensive margin, whereby newly reclaimed cropland in high-pressure regions is drawn disproportionately from land with low inherent suitability for cultivation.
+
+
+
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{res_size.png}
+    \caption{Effect on Cropland Share}
+    \label{fig:es_cropshare}
+\end{figure}
+
+
+\begin{table}[htbp]\centering
+\caption{Land Protection Pressure and Soil Suitability of Newly Reclaimed Cropland}
+    \input{res_soil}
+    \label{tab:soil}
+    \caption*{\begin{footnotesize}
+\textit{Notes}: This table reports cohort-based difference-in-differences estimates from Model~\ref{mod_cohort}. 
+The unit of observation is a newly reclaimed grid cell. 
+The dependent variable in Columns (1) and (2) is a continuous soil suitability index ranging from 1 (least suitable) to 5 (most suitable). 
+The dependent variable in Columns (3) and (4) is an indicator equal to one if soil suitability is greater than or equal to 3, corresponding to land classified as non-saline and suitable for cultivation. 
+All specifications include county fixed effects and reclamation-cohort fixed effects. 
+Columns (2) and (4) additionally control for county-level time-varying characteristics interacted with year, including population, GDP, government budget, and county area. 
+Standard errors are clustered at the county level and reported in parentheses. 
+$^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{footnotesize}}
+\end{table}
+
+Table~\ref{tab:fallow} reports estimates from Model~\ref{mod_cohort} with fallow status as the outcome variable. Across specifications, the treatment indicator is positive and statistically significant, indicating that newly reclaimed land in high-pressure counties after the policy tightening is more likely to remain fallow. The estimated coefficient implies an increase in the fallow rate of 5.5 percentage points relative to a control mean of 26 percent, corresponding to a 21 percent increase. The results are robust to the inclusion of county-specific time-varying controls interacted with year, as well as county, cohort, and years-since-reclamation fixed effects.
+
+To examine the dynamics of post-reclamation land use, I further interact the treatment variable in Model~\ref{mod_cohort} with years since reclamation and plot the estimated coefficients in Figure~\ref{fig:fallow_dynamic}. The figure shows that the fallow rate in high-pressure counties diverges from that in low-pressure counties as early as the first year after reclamation. This gap persists through at least four years after reclamation, indicating that the increased possibility of fallow is not transitory but sustained over time.
+
+
+
+\begin{table}[htbp]\centering
+\caption{Land Protection Pressure and Fallow Status of Newly Reclaimed Cropland}
+    \input{res_fallow}
+    \label{tab:fallow}
+\caption*{\footnotesize \textit{Notes}: The table reports cohort-based difference-in-differences estimates from Model~\ref{mod_cohort}. 
+The dependent variable is an indicator for whether a newly reclaimed grid cell is fallow in a given post-reclamation year. 
+All specifications include county, reclamation-cohort, and years-since-reclamation fixed effects; Column (2) additionally controls for county-level time-varying characteristics interacted with year, including population, GDP, government budget, and county area. 
+Standard errors clustered at the county level are reported in parentheses. 
+$^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.}
+\end{table}
+
+
+
+\begin{figure}
+    \centering   
+    \caption{Dynamics of Fallow Status by Years since Reclamation}
+    \includegraphics[width=0.7\linewidth]{res_fallow_s.png}
+    \label{fig:fallow_dynamic}
+    \caption*{\footnotesize \textit{Notes}: The figure plots coefficients from Model~\ref{mod_cohort} interacted with years since reclamation, with 95 percent confidence intervals reported.}
+\end{figure}
+
+As a final check on the identifying assumptions, I assess pre-policy trends using a balanced county-level panel of cropland. Pre-trend tests based on newly reclaimed land are not feasible because fallow status is undefined prior to reclamation, and the occurrence of reclamation itself is endogenous to county-year conditions. To circumvent these limitations, I instead examine overall cropland utilization at the county level. Specifically, I aggregate cropland grids to the county-year level and estimate a two-way fixed effects event-study specification using county-level average FVC as the outcome. Figure~\ref{fig:fvc_event} reports the resulting estimates.
+
+Prior to 2017, counties with high and low land protection pressure exhibit similar trends in cropland FVC, providing no evidence of differential pre-trends. After the policy tightening, however, cropland FVC declines significantly more in high-pressure counties relative to low-pressure counties, and this gap persists over subsequent years. These results provide supportive evidence for the identification strategy and indicate that the tightening of cropland protection is associated with lower effective land use in high-pressure counties.
+
+
+
+\begin{figure}
+    \centering
+    \caption{Effect of Land Protection Pressure on County-Level Cropland FVC}
+    \includegraphics[width=0.75\linewidth]{res_fvc_event.png}
+    \caption*{\footnotesize The figure plots coefficients from an event-study specification using county-level cropland data. Cropland is defined as grids with cropland share exceeding 0.6. Bars denote 95 percent confidence intervals.}
+    \label{fig:fvc_event}
+\end{figure}
+
+
+
+\subsection{Mechanisms: Multitask Incentives}
+
+Next, I examine the mechanism underlying the observed patterns in cropland allocation and utilization. The conceptual framework emphasizes multitask incentives faced by local officials, who are simultaneously evaluated on economic growth and cropland protection. When cropland protection targets become binding, officials may seek to satisfy quantitative land requirements at minimal political and fiscal cost, generating distortions in land quality and subsequent land use. Such distortions are expected to be most pronounced when multitask incentives are strongest. I classify counties as being under strong-incentive bureaucrats when the upper-prefecture party secretary satisfies two conditions: (i) they are within the promotion-relevant age window, and (ii) reclamation occurs prior to 2020, a period characterized by high economic growth pressure and limited disruption from COVID-related shocks or nationwide land inspections. Following \cite{huang2024political}, I set age 58 as the promotion cutoff, reflecting the sharp decline in promotion prospects beyond this threshold. Under these conditions, meeting cropland targets while maintaining growth performance is particularly costly, heightening incentives to rely on low-quality land for reclamation.
+
+Table~\ref{tab:mech_incentive} examines whether the deterioration in soil suitability documented in the main results is amplified when multitask incentives are strongest. The baseline effect of land protection pressure after 2017 remains negative and statistically significant. More importantly, the triple interaction between strong incentives, land protection pressure, and the post-policy indicator is also negative and statistically significant across both measures of soil suitability. The estimates show that, conditional on land protection pressure, newly reclaimed land in high-incentive settings exhibits substantially lower agronomic quality. The additional effect associated with strong incentives implies a further reduction in the probability that newly reclaimed land is suitable for cultivation. These findings indicate that binding multitask incentives induce distortions in land allocation, increasing reliance on marginal land to meet cropland protection targets.
+
+To further link land quality to land-use outcomes, I examine the relationship between soil suitability and subsequent fallowing. Table~\ref{tab:mech_soil} shows that newly reclaimed land with lower agronomic quality exhibits significantly higher fallow rates. In particular, grids with low soil suitability are more likely to remain uncultivated after reclamation, reflecting weak incentives to invest in marginal land.
+
+This evidence completes the mechanism connecting multitask incentives to intensive-margin outcomes. When cropland targets are binding under strong multitask incentives, officials are more likely to rely on land with low inherent suitability to satisfy quantitative requirements. Such land is less likely to be cultivated and more prone to fallowing, generating distortions in both land allocation and subsequent land use.
+
+
+
+\begin{table}[htbp]\centering 
+\caption{Multitask Incentives and Soil Suitability of Newly Reclaimed Land}
+\input{mechanism_incentive}
+\label{tab:mech_incentive}
+\caption*{\footnotesize
+\textit{Notes}: This table reports cohort DID estimates using newly reclaimed cropland data. The dependent variables measure soil suitability at the time of reclamation, using either a continuous index (1–5) or an indicator equal to one if soil suitability is greater than or equal to 3. 
+Strong incentives are defined as reclamation occurring when local officials are within the promotion-relevant age window (<58) and prior to 2020, COVID-19. 
+All specifications include county and reclamation-cohort fixed effects. 
+Standard errors clustered at the county level are reported in parentheses. 
+$^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.}
+\end{table}
+
+\begin{table}[htbp]\centering 
+\caption{Soil Suitability and Fallowing of Newly Reclaimed Land}
+\input{mechanism_soil}
+\label{tab:mech_soil}
+\caption*{\footnotesize
+\textit{Notes}: This table reports cohort DID estimates using newly reclaimed cropland data.
+The dependent variable is an indicator for whether a newly reclaimed grid is fallow in a given post-reclamation year.
+All specifications include county, reclamation-cohort, and years-since-reclamation fixed effects. 
+Standard errors clustered at the county level are reported in parentheses. 
+$^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.}
+\end{table}
+
+\subsection{Robustness Checks}
+
+I conduct a series of robustness checks to assess the sensitivity of the main results to alternative definitions of key variables and sample constructions. First, I examine whether the findings depend on how land protection pressure is measured. I consider alternative constructions of the pressure index by (i) redefining core-urban districts in the obligation component and (ii) modifying the definition of available land in the total-land component. These exercises test whether the results are driven by specific coding choices in the pressure measure.
+
+Second, I evaluate the sensitivity of the results to the classification of newly reclaimed land and fallow status. I vary the threshold used to define reclamation based on pre-reclamation cropland share and allow for a range of alternative cutoffs. I also consider alternative definitions of fallow land by varying the FVC threshold used to identify uncultivated plots. All robustness exercises are implemented for the main outcomes and are reported in the Appendix.

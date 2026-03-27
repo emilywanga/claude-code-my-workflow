@@ -1,5 +1,5 @@
 pacman::p_load(dplyr, ggplot2, tidyverse,fixest,readxl,data.table,skimr,broom,purrr,writexl,fwildclusterboot)
-setwd("/Users/wangze/Dropbox/Emi/my_project_claude")
+setwd("/Users/wangze/Dropbox/Emi/Land_Project_wtichcc")
 imper <- read.csv("../LandProtection/geodata/Jiangsu_CGCS2000/Jiangsu_grid_impervious_2012_2022.csv")
 index <- read_xlsx("Data/processed/jiangsu_land_index/Land_Pressure_Index_List.xlsx")
 jiangsu_long <- read.csv("Data/processed/jiangsu_land_index/jiangsu_long.csv")

@@ -1,7 +1,7 @@
 pacman::p_load(dplyr, ggplot2, tidyverse,fixest,readxl,data.table)
 
 # Load data
-setwd("/Users/wangze/Dropbox/Emi/my_project_claude")
+setwd("/Users/wangze/Dropbox/Emi/Land_Project_wtichcc")
 cropland <- read.csv("../LandProtection/data/Jiangsu/jiangsu_crop_ready.csv")
 index <- read_excel("Data/processed/jiangsu_land_index/Land_Index.xlsx",sheet = 5)
 # Remove spaces, unify names

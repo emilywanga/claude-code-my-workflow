@@ -11,7 +11,7 @@ library(readxl)
 library(ggthemes)
 library(fixest)
 
-setwd("/Users/wangze/Dropbox/Emi/my_project_claude")
+setwd("/Users/wangze/Dropbox/Emi/Land_Project_wtichcc")
 
 provinf <- read_excel("Data/processed/china_attribute.xlsx")
 land04 <- read.csv("../LandProtection/data/Allcounty/CLCD_v01_2004_县.csv")

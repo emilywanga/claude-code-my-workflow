@@ -1,7 +1,7 @@
 pacman::p_load(dplyr, ggplot2, tidyverse,fixest,readxl,data.table,skimr,broom,purrr,writexl,modelsummary,tibble,kableExtra,data.table)
 
 
-setwd("/Users/wangze/Dropbox/Emi/my_project_claude")
+setwd("/Users/wangze/Dropbox/Emi/Land_Project_wtichcc")
 admin <- read.csv("../LandProtection/geodata/Jiangsu_CGCS2000/Jiangsu_grid_with_admin.csv")
 admin <- admin %>%
   select(!c(Nm_Prvn,Nm_Cnty,Nm_Prfc,Pinyin))

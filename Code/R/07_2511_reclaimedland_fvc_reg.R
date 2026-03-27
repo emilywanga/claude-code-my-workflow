@@ -1,7 +1,7 @@
 pacman::p_load(dplyr, ggplot2, tidyverse,fixest,readxl,data.table)
 
 # Load data
-setwd("/Users/wangze/Dropbox/Emi/my_project_claude")
+setwd("/Users/wangze/Dropbox/Emi/Land_Project_wtichcc")
 cropland <- read.csv("../LandProtection/geodata/Jiangsu_CGCS2000/Jiangsu_grid_cropland_2012_2022.csv")
 cropland <- cropland %>%
   mutate(crop_share = cropland_area_m2/250000)

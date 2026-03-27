@@ -1,4 +1,4 @@
-setwd("/Users/wangze/Dropbox/Emi/my_project_claude")
+setwd("/Users/wangze/Dropbox/Emi/Land_Project_wtichcc")
 library(tidyverse)
 library(dplyr)
 library(knitr)

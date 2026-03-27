@@ -1,6 +1,6 @@
 pacman::p_load(dplyr, ggplot2, tidyverse,fixest,readxl,data.table,skimr,broom,purrr,writexl,fwildclusterboot)
 
-setwd("/Users/wangze/Dropbox/Emi/my_project_claude")
+setwd("/Users/wangze/Dropbox/Emi/Land_Project_wtichcc")
 fvc_long <- read.csv("Data/processed/jiangsu_land_index/fvc_long.xlsx")
 soil <- read_xlsx("../LandProtection/geodata/soil_jiangsu/Jiangsu_grid_500m_with_soil.xlsx")
 soil <- soil %>% select(grid_id,soil_suit_mean,soil_suit_sd) 

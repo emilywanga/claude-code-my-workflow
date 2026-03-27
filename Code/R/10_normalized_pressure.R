@@ -21,7 +21,7 @@ pacman::p_load(
   data.table, broom, modelsummary, tibble
 )
 
-setwd("/Users/wangze/Dropbox/Emi/my_project_claude")
+setwd("/Users/wangze/Dropbox/Emi/Land_Project_wtichcc")
 
 # =============================================================================
 # 1. BUILD LAND PRESSURE INDEX

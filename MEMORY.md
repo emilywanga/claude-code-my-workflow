@@ -99,13 +99,13 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 
 [LEARN:project] Institution: The University of Tokyo.
 
-[LEARN:project] Original project location: /Users/wangze/Dropbox/Emi/LandProtection/ — still exists, is the source of truth for large geodata files. New working project: /Users/wangze/Dropbox/Emi/my_project_claude/.
+[LEARN:project] Original project location: /Users/wangze/Dropbox/Emi/LandProtection/ — still exists, is the source of truth for large geodata files. New working project: /Users/wangze/Dropbox/Emi/Land_Project_wtichcc/.
 
 [LEARN:project] Data architecture: Small processed files (<1MB) in Data/processed/ (committed). Large geodata (CLCD rasters, FVC grids, impervious grids, 49–188MB CSVs) stay in ../LandProtection/geodata/ and ../LandControl/geodata/ — referenced via relative path from R scripts and absolute path from Python notebooks.
 
 [LEARN:project] LaTeX compilation: cd Paper && TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode main.tex. graphicspath = ../Figures/ and ../Results/Figures/. input@path = ./sections/, ./appendix/, ../Results/Tables/. bibliography = ../Bibliography_base.
 
-[LEARN:project] R scripts use setwd("/Users/wangze/Dropbox/Emi/my_project_claude") and reference large data via ../LandProtection/geodata/ or ../LandControl/geodata/. Table outputs → Results/Tables/. Figure outputs → Results/Figures/.
+[LEARN:project] R scripts use setwd("/Users/wangze/Dropbox/Emi/Land_Project_wtichcc") and reference large data via ../LandProtection/geodata/ or ../LandControl/geodata/. Table outputs → Results/Tables/. Figure outputs → Results/Figures/.
 
 [LEARN:project] Python notebooks in Code/Python/ use absolute paths to /Users/wangze/Dropbox/Emi/LandControl/geodata/ (older project). No path changes needed — absolute paths still valid.
 

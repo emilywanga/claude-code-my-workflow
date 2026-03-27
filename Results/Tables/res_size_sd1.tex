@@ -1,0 +1,40 @@
+\begin{table}
+\centering
+\begin{talltblr}[         %% tabularray outer open
+entry=none,label=none,
+note{}={* p \num{< 0.1}, ** p \num{< 0.05}, *** p \num{< 0.01}},
+]                     %% tabularray outer close
+{                     %% tabularray inner open
+colspec={Q[]Q[]},
+hline{2}={1-2}{solid, black, 0.05em},
+hline{22}={1-2}{solid, black, 0.05em},
+hline{1}={1-2}{solid, black, 0.1em},
+hline{24}={1-2}{solid, black, 0.1em},
+column{2}={}{halign=c},
+column{1}={}{halign=l},
+}                     %% tabularray inner close
+& Cropland Share \\
+event\_factor = -6 × Pressure\_c\_std & \num{-0.002} \\
+& (\num{0.001}) \\
+event\_factor = -5 × Pressure\_c\_std & \num{-0.001}* \\
+& (\num{0.001}) \\
+event\_factor = -4 × Pressure\_c\_std & \num{-0.001} \\
+& (\num{0.001}) \\
+event\_factor = -3 × Pressure\_c\_std & \num{-0.001} \\
+& (\num{0.000}) \\
+event\_factor = -2 × Pressure\_c\_std & \num{-0.000} \\
+& (\num{0.000}) \\
+event\_factor = 0 × Pressure\_c\_std & \num{0.002}*** \\
+& (\num{0.000}) \\
+event\_factor = 1 × Pressure\_c\_std & \num{0.003}*** \\
+& (\num{0.001}) \\
+event\_factor = 2 × Pressure\_c\_std & \num{0.004}*** \\
+& (\num{0.001}) \\
+event\_factor = 3 × Pressure\_c\_std & \num{0.004}*** \\
+& (\num{0.001}) \\
+event\_factor = 4 × Pressure\_c\_std & \num{0.007}** \\
+& (\num{0.003}) \\
+Num.Obs. & \num{3743982} \\
+R2 & \num{0.981} \\
+\end{talltblr}
+\end{table}

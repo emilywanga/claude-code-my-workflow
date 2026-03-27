@@ -1,0 +1,61 @@
+This section lays out a conceptual framework that organizes the institutional setting, clarifies the incentives faced by different agents, and guides the empirical analysis. 
+The framework is not intended to solve a formal model, but rather to guide the empirical analysis and to derive testable implications.
+
+\subsection{Land Characteristics and Agricultural Productivity}
+
+Consider a set of land plots indexed by $j$. Each plot is characterized by two fundamental attributes.
+
+First, each plot has an economic potential, denoted by $p_j$, which captures the economic value of converting the plot to construction land. 
+This value is determined by access to infrastructure, proximity to urban centers, and other locational advantages, and reflects the contribution of the plot to urban economic growth if developed.
+
+Second, each plot has an intrinsic land quality, denoted by $q_j$. 
+Land quality reflects agronomic and biophysical conditions such as soil suitability, slope or ruggedness, drainage, and water availability. 
+Importantly, $q_j$ is an exogenous characteristic of the plot and does not depend on current cultivation decisions.
+
+If a plot is converted to cropland, its expected agricultural output depends on both land quality and cultivation effort.
+We represent this relationship using a production function:
+
+\begin{equation}
+y_j = f(q_j, e_j),
+\end{equation}
+
+where $q_j$ denotes intrinsic land quality, $e_j$ represents cultivation effort, including irrigation, planting, and early-stage maintenance, and $y_j$ captures the plot's expected agricultural output.
+
+We assume that higher land quality raises the marginal return to cultivation effort, formally $f_{qe} > 0$. 
+Equivalently, for a given level of output, achieving that level requires less effort on higher-quality land. 
+This assumption captures a well-established agronomic regularity: improving or cultivating low-quality land is substantially more costly and yields lower returns than cultivating land with favorable natural conditions.
+
+\subsection{Government Objectives and Information Constraints}
+
+The central government seeks to preserve agricultural output through two dimensions: the total area of cropland and its productivity. 
+In principle, both dimensions are relevant for food security. 
+In practice, however, these two dimensions differ sharply in observability.
+
+Cropland area is directly observable and verifiable through administrative records and satellite imagery. By contrast, land quality, cultivation effort, and agricultural productivity are difficult to monitor, especially at the plot level. As a result, policy enforcement and performance evaluation primarily focus on meeting cropland-area targets, while productivity and actual cultivation outcomes receive far less effective oversight.
+
+Local governments face a different objective function. They are responsible for promoting local economic growth---largely through urban development---and for fulfilling cropland-area mandates imposed by higher levels of government. 
+Conditional on meeting the land protection requirements, local governments have incentives to minimize the fiscal and political costs associated with cropland expansion, thereby allocating more resources to growth-enhancing activities. Local governments do not fully internalize agricultural productivity $y_j$, since it is weakly monitored and plays a limited role in economic growth.
+
+\subsection{Land Pressure and Local Trade-offs}
+
+Cities differ in the extent of land-use pressure they face. 
+Low-pressure cities possess substantial land reserves that are low in economic potential but high in land quality. 
+In these locations, expanding cropland does not require sacrificing valuable urban land or incurring high reclamation costs.
+
+High-pressure cities, by contrast, have limited land reserves overall, which implies that the stock of land that is both low in economic potential and high in agronomic quality is insufficient to meet their cropland-area obligations. When faced with binding cropland-area mandates, local governments in these cities confront a trade-off. 
+They can either (i) reclaim low-quality land at relatively low fiscal cost, or (ii) obtain high-quality cropland at substantially higher cost, for example through quota trading or other costly institutional arrangements. Because the second option is considerably more expensive, high-pressure cities rationally choose the first, expanding cropland primarily on low-quality land.
+
+This mechanism implies that, following a tightening of cropland-area regulation, the marginal plots brought into cultivation in high-pressure cities are of lower quality. As a result, average cropland quality deteriorates in locations where land-use pressure is most severe.
+
+\subsection{Farmers' Response and Fallowing}
+
+After land is converted to cropland, cultivation decisions are made by farmers, cooperatives, or agricultural firms. These actors care directly about agricultural productivity $y_j$, not about administrative area targets. 
+On low-quality plots, the marginal return to cultivation effort is low, making intensive cultivation unattractive. 
+Consequently, such plots may receive little effort or remain uncultivated altogether.
+
+This divergence between local government incentives and farmers' objectives generates a key outcome of the framework: newly reclaimed cropland in high-pressure cities is more likely to exhibit low vegetation cover, poor recovery after reclamation, and a higher probability of fallowing. 
+
+\subsection{Testable Implications}
+
+The framework yields several testable implications that guide the empirical analysis. First, following the policy tightening, plots located in high-pressure cities are more likely to be converted to cropland. Second, newly reclaimed cropland in these cities should be of lower quality, as measured by soil suitability and related indicators. Third, due to weak cultivation incentives, these plots should exhibit lower vegetation cover and higher fallowing rates over time. 
+The remainder of the paper evaluates these predictions using high-resolution spatial data on land use, land quality, and vegetation dynamics.

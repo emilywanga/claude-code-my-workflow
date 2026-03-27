@@ -1,0 +1,92 @@
+\subsection{Data Sources and Measurement}
+
+This study primarily relies on satellite-based raster data to measure land characteristics at a fine spatial resolution. To harmonize datasets with different spatial and temporal resolutions and to facilitate empirical analysis, I overlay all raster layers onto a uniform $500 \times 500$ meter grid covering the study area. For each grid cell, I compute average values of the underlying raster measures, which constitute the main unit of observation in the analysis.
+
+\begin{table}[h]
+    \centering
+    \input{data}
+    \caption{Data Sources}
+    \label{tab:datasource}
+\end{table}
+
+\subsubsection{Cropland}
+
+As summarized in Table~\ref{tab:datasource}, cropland information is obtained from the 30-meter annual land cover dataset for China (CLCD; \cite{yang2021_30m_landcover_china}). The CLCD provides annual land cover classifications from 1990 to 2021 at a 30-meter resolution, distinguishing among cropland, forest, shrubland, grassland, barren land, impervious surface, water bodies, snow, and ice. This dataset allows me to identify both cropland and built-up areas, with the latter captured by the impervious surface category.
+
+\subsection{Fractional Vegetation Cover and Measurement of Fallow Rate}
+
+Fractional Vegetation Cover (FVC) data are obtained from the National Tibetan Plateau Data Center \citep{zhao2023fractional}. The original dataset provides spatiotemporally continuous vegetation cover for China at a 30-meter resolution and a bimonthly frequency from 2010 to 2022. Following standard practice in the remote sensing literature, I aggregate the bimonthly observations to annual averages at the grid-cell level, which serve as a measure of vegetation coverage for each grid-year.
+
+I use FVC to measure land-use intensity and to define fallow land. A grid cell is classified as fallow in a given year if its annual average FVC is below 0.2, which corresponds to the bottom 25 percent of the FVC distribution across cropland grids. This threshold captures land with very low vegetation cover and limited cultivation activity. In Appendix Figure~\ref{fig:sensitivity_fallow02}, I examine the sensitivity of the results to alternative FVC cutoffs. The estimates remain stable when the threshold is chosen sufficiently low, indicating that the main findings are not driven by the specific choice of cutoff.
+
+
+\subsection{Soil Type and Measurement of Soil Suitability}
+
+Soil information is obtained from the 1:1,000,000 Soil Map of China compiled by the National Soil Survey Office in 1995. A potential limitation of this measure is that soil characteristics are time-invariant over the sample period. However, this feature is unlikely to pose a major concern for the analysis, since soil type reflects long-run geological and pedological conditions that evolve slowly over time and are largely predetermined with respect to recent policy changes. 
+
+I measure land quality using a grid-level soil suitability index constructed from soil type classifications as shown in Table~\ref{tab:soilmap}. The mapping from soil types to suitability scores follows the FAO Land Evaluation Framework and China’s National Land Capability Standard (GB/T 28407–2012), which provides qualitative guidelines for assessing agricultural suitability based on soil properties. Because these frameworks do not offer a one-to-one correspondence between specific soil types and numerical suitability scores, the resulting index should be interpreted as a coarse proxy for inherent land quality rather than a precise agronomic measure.
+
+Specifically, I assign each soil type a suitability score ranging from 1 to 5, corresponding to FAO suitability classes from permanently unsuitable to highly suitable, and compute the grid-level score as the average across soil types within each $500 \times 500$ meter grid cell. To facilitate interpretation and reduce sensitivity to the exact scoring scheme, I additionally classify land as suitable if the average score is at least 3, and unsuitable otherwise. This cutoff separates soils that are marginally suitable or better from soils that are saline, alkaline, waterlogged, or otherwise non-arable, which correspond to the lowest suitability classes. 
+
+\begin{table}[h]
+    \centering
+    \caption{Mapping Soil Types to Suitability Classes}
+    \input{soilmap}
+    \label{tab:soilmap}
+\end{table}
+
+\subsubsection{Administrative and Socioeconomic Data}
+
+Administrative data on government officials are collected from publicly available online biographies. The dataset records key characteristics of prefecture- and province-level officials, including appointment and departure years, gender, age, and place of birth. County-level socioeconomic variables are obtained from the China County Statistical Yearbooks. The data include information on economic activity, agricultural production, population, and fiscal conditions. In addition, cropland replenishment obligations are collected from prefecture-level Land Use Master Plans, which specify each jurisdiction’s targets for urban expansion and cropland replenishment obligation through 2020.
+
+
+\subsection{Measuring Land Protection Pressure}
+
+
+This subsection constructs a county-level measure of exposure to binding cropland protection constraints. The measure captures the land protection pressure faced by local officials, which reflects the intensity of multitask pressure arising from the need to satisfy cropland protection targets while accommodating urbanization and development demands. It serves as the key explanatory variable in the empirical analysis. 
+
+The construction of the land protection pressure measure exploits institutional features of China’s cropland occupation--replenishment system. Two policy rules are central to this design:
+
+\begin{enumerate}
+    \item \textbf{Cropland occupation--replenishment rule.} Any conversion of cropland to construction land must be offset by the creation of an equivalent amount of new cropland.
+    
+    \item \textbf{Non-local replenishment with prefecture-level priority.} Replenishment is not necessarily required to occur within the converting county. When core urban districts lack sufficient land, cropland replenishment is, in principle, fulfilled through \emph{cross-county adjustment within the same prefecture}. Only if prefecture-level adjustment is infeasible may replenishment be arranged across prefectures within the same province, typically through a paid transaction mechanism.
+\end{enumerate}
+
+Together, these rules imply that cropland replenishment is constrained by land availability at the prefecture level. Because core urban districts are primarily tasked with meeting economic growth targets, their cropland replenishment obligations are frequently met by counties within the same prefecture.\footnote{This practice is documented in official planning materials. For example, Lianyungang City’s Land Use Master Plan states that “districts such as Haizhou District and Lianyun District that are unable to achieve local farmland reclamation–replacement balance due to insufficient land reserves may, upon approval, implement off-site reclamation–replacement within the municipal jurisdiction, provided that the aggregate reclamation obligation remains unchanged.”} As a result, non-core counties serve as a shared land reservoir that absorbs replenishment obligations generated by urban expansion, creating variation in cropland protection pressure across counties.\footnote{The definition of the core urban area is specified in each prefecture’s Land Use Master Plan (2006–2020).}
+
+
+Based on this structure, I define land protection pressure at the county level as
+\begin{equation}
+\text{Pressure}_{c}
+=
+\left(
+\frac{\text{Obligation}_{p}}
+     {\text{TotalLand}_{p}}
+\right)
+\times 
+\text{LandShare}_{c},
+\end{equation}
+where $p$ denotes the prefecture to which county $c$ belongs. $\text{Obligation}_{p}$ measures the total cropland replenishment obligation assigned to the core urban districts of prefecture $p$ under provincial land-use planning targets. $\text{TotalLand}_{p}$ captures the total area of available land outside core urban districts within prefecture $p$, excluding impervious surfaces and water bodies, and represents the effective land reservoir for cropland replenishment. $\text{LandShare}_{c}$ denotes county $c$’s share of this reservoir, defined as the ratio of available land in county $c$ to the total available land summed across all non-core counties within the same prefecture.
+
+This construction implies that counties with larger shares of non-core, available land are more exposed to cropland replenishment pressure when prefecture-level obligations increase. Importantly, $\text{LandShare}_{c}$ is determined by pre-existing land endowments and administrative boundaries, and is fixed prior to the tightening of cropland protection in 2017. As a result, conditional on prefecture-level obligations, cross-county variation in land protection pressure reflects an exogenous allocation of replenishment capacity rather than endogenous policy choices by county governments. Conceptually, this structure resembles a shift–share design, in which prefecture-level replenishment obligations act as the common shock, while county-level land shares determine differential exposure. This feature underpins the empirical strategy used in subsequent sections.
+
+To assess the extent to which variation in $Pressure_c$ arises within prefectures, Figure~\ref{fig:box} plots the distribution of the pressure index across counties by prefecture. Each box summarizes the distribution of land protection pressure among non-core counties within a prefecture, with the thick horizontal line indicating the prefecture-level median. Differences in median pressure across prefectures capture between-prefecture variation, while the dispersion of observations within each box reflects within-prefecture heterogeneity in land protection pressure. The figure shows that the pressure index has sufficient variation both across and within prefectures.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\linewidth]{Pressure_c_boxplot.png}
+\caption{Distribution of Land Protection Pressure within and across Prefectures}
+\caption*{\footnotesize \textit{Notes}: This figure plots the distribution of the land protection pressure index ($Pressure_c$) across counties within each prefecture. Each box summarizes the distribution of $Pressure_c$ among non-core counties within a prefecture: the box represents the interquartile range (25th–75th percentiles), and the thick horizontal line indicates the median. Dots denote individual counties.}
+\label{fig:box}
+\end{figure}
+
+To formally distinguish the within- and between-prefecture components of variation in this key variable, I conduct a simple variance decomposition based on the ANOVA identity.\footnote{$
+\sum_{c,p} \left( X_{cp} - \bar{X} \right)^2
+=
+\sum_{p} n_p \left( \bar{X}_p - \bar{X} \right)^2
++
+\sum_{p} \sum_{c \in p} \left( X_{cp} - \bar{X}_p \right)^2 .$} Specifically, total variation in $Pressure_c$ is decomposed into variation across prefecture-level means and variation across counties within the same prefecture. The results indicate that 39.8\% of the total variation in the pressure index arises from within-prefecture differences across counties, while the remaining $60.2\%$ reflects differences across prefectures.
+
+
+%\subsection{Summary Statistics}%

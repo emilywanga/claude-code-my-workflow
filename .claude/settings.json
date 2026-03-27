@@ -43,7 +43,10 @@
       "Bash(for *)",
       "Bash(gs *)",
       "Bash(pdftk *)",
-      "Bash(mkdir *)"
+      "Bash(mkdir *)",
+      "Read(//Users/wangze/Dropbox/Emi/LandProtection/**)",
+      "Bash(cp /Users/wangze/Dropbox/Emi/LandProtection/Paper_Presentation/literature.bib /Users/wangze/Dropbox/Emi/my_project_claude/Slides/)",
+      "Bash(cp /Users/wangze/Dropbox/Emi/LandProtection/Paper_Presentation/main.tex /Users/wangze/Dropbox/Emi/my_project_claude/Slides/)"
     ]
   },
   "hooks": {

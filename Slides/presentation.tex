@@ -1,0 +1,62 @@
+\documentclass[10pt, xcolor=x11names,compress, aspectratio=169]{beamer}
+\usepackage{tabulary}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{mwe}% for example pictures
+\usepackage{siunitx}
+\usepackage{hyperref}
+
+\usecolortheme{dolphin}
+
+% set colors
+\definecolor{myNewColorA}{RGB}{25,25,112}
+\definecolor{myNewColorB}{RGB}{25,25,112}
+\definecolor{myNewColorC}{RGB}{25,25,112}
+\setbeamercolor*{palette primary}{bg=myNewColorC}
+\setbeamercolor*{palette secondary}{bg=myNewColorB, fg = white}
+\setbeamercolor*{palette tertiary}{bg=myNewColorA, fg = white}
+\setbeamercolor*{titlelike}{fg=myNewColorA}
+\setbeamercolor*{title}{bg=myNewColorA, fg = white}
+\setbeamercolor*{item}{fg=myNewColorA}
+\setbeamercolor*{caption name}{fg=myNewColorA}
+\usefonttheme{professionalfonts}
+\useoutertheme{infolines}
+\setbeamertemplate{headline}[default]
+\setbeamertemplate{navigation symbols}{}
+\mode<beamer>{\setbeamertemplate{blocks}[rounded][shadow=true]}
+\setbeamercovered{transparent}
+\makeatletter\setbeamertemplate{footline}
+{  
+\leavevmode%  
+\hbox{%  
+\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%    
+\usebeamerfont{author in head/foot}
+\insertshortauthor%~~\beamer@ifempty{\insertshortinstitute}{}
+ \end{beamercolorbox}%  
+ \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{institute in head/foot}%    
+ \usebeamerfont{title in head/foot}\insertinstitute  
+ \end{beamercolorbox}%  
+ \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%    
+ \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}    
+ \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}   
+ \end{beamercolorbox}}%  
+ \vskip0pt%
+ }
+ \makeatother 
+ \useoutertheme[footline=empty, subsection=false]{miniframes}
+ \usepackage{multicol}  
+ \author{Presented by Emily WANG}
+ \title{Deviations in Cropland Protection: The Multi-tasking Pressures by Local Bureaucrats in China}
+
+ \institute{University of Tokyo}\date{30/04/2024} 
+ \begin{document}
+ \begin{frame}
+ \titlepage
+ \end{frame}
+
+\section{Introduction}
+
+
+
+\end{document}

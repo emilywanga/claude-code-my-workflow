@@ -1,0 +1,143 @@
+
+\documentclass[a4paper,12pt]{article}
+% --------------------------
+
+
+% 0.1. -- Add packages --
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\graphicspath{{../Figures/}{../Results/Figures/}{./}}
+\usepackage{mathtools}
+\usepackage{comment}
+\usepackage{amsfonts}
+\usepackage{bbm,bm}
+\usepackage{physics}
+\usepackage{float}
+\usepackage{cancel}
+\usepackage{cases}
+\usepackage{ascmac}
+\usepackage{ulem} 
+\usepackage[english]{babel}
+\usepackage[hang,flushmargin]{footmisc}
+\usepackage{stmaryrd}
+\usepackage{booktabs}
+\usepackage[top=25truemm,bottom=25truemm,left=20truemm,right=20truemm]{geometry}
+\usepackage{setspace}
+\overfullrule = 0pt % mute overfull box
+% --------------------------
+% (note) you can add other packages which you wanna use by typing "\usepackage{[package name]}"
+\usepackage{tikz}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{siunitx}
+
+\usepackage[authoryear,round]{natbib}
+\bibliographystyle{chicagoa}
+
+\usepackage{subcaption}
+\usepackage{makecell}
+ \linespread{1.2}
+
+\makeatletter
+\def\input@path{{./sections/}{./appendix/}{../Results/Tables/}{./}}
+\makeatother
+% 0.2. -- define new commands (example) --
+\newcommand{\latex}{\LaTeX~}
+\newcommand{\define}{\overset{{\rm def }}{\Leftrightarrow}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+\newcommand{\vin}{\rotatebox{90}{$\in$}}
+% --------------------------
+% (note) you can define new command to shorten the code. Please Google or create by yourself and add as needed.
+
+
+% 0.3. -- setting for Matlab code --
+\usepackage{listings}
+\lstset{
+    language=Matlab,
+	basicstyle={\ttfamily},
+	identifierstyle={\small},
+	commentstyle={\smallitshape},
+	keywordstyle={\small\bfseries},
+	ndkeywordstyle={\small},
+	stringstyle={\small\ttfamily},
+	frame={tb},
+	breaklines=true,
+	columns=[l]{fullflexible},
+	numbers=left,
+	xrightmargin=0ex,
+	xleftmargin=3ex,
+	numberstyle={\scriptsize},
+	stepnumber=1,
+	numbersep=1ex,
+	lineskip=-0.5ex
+}
+\usepackage[T1]{fontenc} %change font encoding to T1
+\usepackage[framed,numbered]{matlab-prettifier}
+
+\title{When Monitoring Backfires: Multi-Tasking Bureaucrats and Land Misallocation in China
+\footnote{I am grateful to Yasuyuki Sawada, and all seminar participants at the University of Tokyo, and conference participants at Young JADE, for their illustrative guides and comments. I acknowledge the assistance of GPT 5.2 in proofreading the draft of this
+paper. All errors are my own.}}
+
+
+
+\date{\today}
+
+
+\author{
+    Ze Wang\thanks{The University of Tokyo. wangze@g.ecc.u-tokyo.ac.jp}
+}
+
+
+\begin{document}
+
+\maketitle
+
+\centerline{\color{blue}\href{https://www.dropbox.com/scl/fi/ex67w501hojuiegcu77yn/ZeWang_Cropland.pdf?rlkey=5c99k5iqay90ucazea5qi2c0s&dl=0}{Latest version available here} \color{black}}
+
+\centerline{This is a work-in-progress paper.}
+
+\begin{abstract}
+    This paper examines how strengthened enforcement of performance targets affects policy implementation when local officials face multitask incentives and imperfect monitoring. I examine China’s 2017 tightening of cropland protection, which made compliance with cropland-area targets a binding component of bureaucratic evaluations while leaving land quality and utilization weakly monitored. Exploiting cross-county variation in cropland protection pressure arising from differential exposure to binding cropland constraints within prefectures, I combine high-resolution satellite data on land cover, soil suitability, and vegetation dynamics to trace land-use responses at a fine spatial scale. I find that stricter enforcement increases cropland expansion in high-pressure counties, yet the land brought into cultivation is of lower agronomic quality and displays persistently higher fallow rates. These effects are stronger when officials face higher promotion incentives and heavier economic growth pressures. The results show that strengthening oversight along observable dimensions can induce distortions along less observable ones, generating land misallocation and productivity losses.
+\end{abstract}
+
+
+\pagebreak
+
+\section{Introduction}
+\input{1_intro}
+
+\section{Institutional Background\label{sec:background}}
+\input{2_background}
+
+\section{Data and Measurement\label{sec:data}}
+\input{3_data}
+
+\section{Motivating Facts\label{sec:fact}}
+\input{4_fact}
+
+\section{Conceptual Framework\label{sec:concept}}
+\input{5_concept}
+
+\section{Empirical Analysis\label{sec:empirical}}
+\input{6_empirical}
+
+
+\section{Discussion and Conclusion\label{sec:conclude}}
+\input{7_conclusion}
+
+\bibliography{../Bibliography_base}
+
+\newpage
+
+\appendix
+\section{Additional Results and Robustness Checks}
+\input{A1_appendix}
+
+\end{document}

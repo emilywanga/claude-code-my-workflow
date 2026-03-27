@@ -49,6 +49,10 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 
 [LEARN:governance] Amendment process: Ask user if deviating from article is "amending Article X (permanent)" or "overriding for this task (one-time exception)". Preserves institutional memory.
 
+## Skills
+
+[LEARN:skills] `/mixed-language-bridge` skill installed. Parses mixed Chinese+English prompts, replies in English by default, switches to Chinese/Japanese only on explicit request. Source: LandProtection/.claude/skills/mixed-language-bridge/SKILL.md.
+
 ## Skill Creation
 
 [LEARN:skills] Effective skill descriptions use trigger phrases users actually say: "check citations", "format results", "validate protocol" → Claude knows when to load skill.
@@ -70,3 +74,39 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 [LEARN:meta] Dogfooding principles must be enforced: plan-first, spec-then-plan, quality gates, session logs → we follow our own guide.
 
 [LEARN:meta] Template development work (building infrastructure, docs) doesn't create session logs in quality_reports/ → those are for user work (slides, analysis), not meta-work. Keeps template clean for users who fork.
+
+---
+
+## Project: When Monitoring Backfires (Land Misallocation in China)
+
+[LEARN:project] Paper: "When Monitoring Backfires: Multi-Tasking Bureaucrats and Land Misallocation in China" — examines how 2017 tightening of cropland protection enforcement creates multitask incentive distortions among Chinese local officials.
+
+[LEARN:project] Identification strategy: Cross-county variation in cropland protection pressure from differential exposure to binding cropland-area constraints WITHIN prefectures (prefecture fixed effects absorb common prefecture-level shocks).
+
+[LEARN:project] Policy shock timing: 2017 reform made cropland-area compliance binding in bureaucratic evaluations while leaving land quality and utilization weakly monitored → multitask response predicted by theory.
+
+[LEARN:project] Key findings: Stricter enforcement → (1) cropland expansion, (2) lower agronomic quality of new land, (3) higher persistent fallow rates. Heterogeneity: stronger for high promotion incentives and high economic growth pressure counties.
+
+[LEARN:project] Data sources: High-resolution satellite data (land cover, vegetation/NDVI/EVI), soil suitability index, administrative boundaries (county/prefecture level), official cropland target registers.
+
+[LEARN:project] Tools: Python (geodata cleaning, satellite processing, geopandas/rasterio), R (econometrics, figures, tables), Stata (cross-checks), LaTeX (manuscript). CRS standard: EPSG:4326 for storage, EPSG:32650/32651 for area calculations.
+
+[LEARN:project] Target journals: AER, QJE, JPub, AEJ:Policy, JDE. Publication-ready standard required for all figures and tables.
+
+[LEARN:project] Folder structure: Paper/ (LaTeX), Code/Python/ + Code/R/ + Code/Stata/, Results/Tables/ + Results/Figures/, Data/processed/ (committed) + Data/raw/ (gitignored). SSOT: Paper/main.tex.
+
+[LEARN:project] Figure standards: Single-column 6.5×4.5in, full-width 13×5in, maps 8×7in; all 300 dpi; bg="white"; palette: navy #1a3a5c, charcoal #3d3d3d, gold #c9a84c, green #2d7a4b, red #b91c1c.
+
+[LEARN:project] Institution: The University of Tokyo.
+
+[LEARN:project] Original project location: /Users/wangze/Dropbox/Emi/LandProtection/ — still exists, is the source of truth for large geodata files. New working project: /Users/wangze/Dropbox/Emi/my_project_claude/.
+
+[LEARN:project] Data architecture: Small processed files (<1MB) in Data/processed/ (committed). Large geodata (CLCD rasters, FVC grids, impervious grids, 49–188MB CSVs) stay in ../LandProtection/geodata/ and ../LandControl/geodata/ — referenced via relative path from R scripts and absolute path from Python notebooks.
+
+[LEARN:project] LaTeX compilation: cd Paper && TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode main.tex. graphicspath = ../Figures/ and ../Results/Figures/. input@path = ./sections/, ./appendix/, ../Results/Tables/. bibliography = ../Bibliography_base.
+
+[LEARN:project] R scripts use setwd("/Users/wangze/Dropbox/Emi/my_project_claude") and reference large data via ../LandProtection/geodata/ or ../LandControl/geodata/. Table outputs → Results/Tables/. Figure outputs → Results/Figures/.
+
+[LEARN:project] Python notebooks in Code/Python/ use absolute paths to /Users/wangze/Dropbox/Emi/LandControl/geodata/ (older project). No path changes needed — absolute paths still valid.
+
+[LEARN:project] Paper sections: main.tex + sections/1_intro through 7_conclusion + appendix/A1_appendix. All are December 2025 drafts (Paper_2512 vintage). Tables in Results/Tables/ (7 .tex files). Figures in Figures/ (37 static files).

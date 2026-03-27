@@ -1,25 +1,28 @@
 ---
 paths:
+  - "Code/**/*.R"
+  - "Code/**/*.py"
+  - "Code/**/*.do"
   - "scripts/**/*.R"
   - "explorations/**"
-  - "Figures/**/*.R"
 ---
 
-# Research Project Orchestrator (Simplified)
+# Research Project Orchestrator
 
-**For R scripts, simulations, and data analysis** -- use this simplified loop instead of the full multi-agent orchestrator.
+**For data analysis scripts (R, Python, Stata) and explorations** — use this simplified loop.
 
 ## The Simple Loop
 
-```
+```text
 Plan approved → orchestrator activates
   │
   Step 1: IMPLEMENT — Execute plan steps
   │
   Step 2: VERIFY — Run code, check outputs
-  │         R scripts: Rscript runs without error
-  │         Simulations: set.seed reproducibility
-  │         Plots: PDF/PNG created, correct format
+  │         R:      Rscript runs without error; output files created
+  │         Python: python script.py runs without error; outputs created
+  │         Stata:  .do file runs without error; outputs created
+  │         Spatial: CRS verified; no silent mismatches
   │         If verification fails → fix → re-verify
   │
   Step 3: SCORE — Apply quality-gates rubric
@@ -31,12 +34,42 @@ Plan approved → orchestrator activates
 
 **No 5-round loops. No multi-agent reviews. Just: write, test, done.**
 
+---
+
 ## Verification Checklist
 
+### All Scripts
+
 - [ ] Script runs without errors
-- [ ] All packages loaded at top
+- [ ] All packages/imports at top
 - [ ] No hardcoded absolute paths
-- [ ] `set.seed()` once at top if stochastic
 - [ ] Output files created at expected paths
-- [ ] Tolerance checks pass (if applicable)
 - [ ] Quality score >= 80
+
+### R Scripts
+
+- [ ] `set.seed()` once at top if stochastic
+- [ ] Figures saved to `Results/Figures/` with explicit dimensions and `bg = "white"`
+- [ ] Tables saved to `Results/Tables/` as `.tex` and `.csv`
+
+### Python Scripts (Geodata)
+
+- [ ] `random_state=` set for any stochastic operation
+- [ ] CRS set and verified before every spatial join
+- [ ] Large raster files closed after reading (avoid memory leaks)
+- [ ] Processed data saved to `Data/processed/`
+
+### Stata Scripts
+
+- [ ] `set seed` at top
+- [ ] `global root` defined for path portability
+- [ ] Tables exported to `Results/Tables/`
+- [ ] No implicit factor variable coding
+
+---
+
+## Tolerance Checks (If Applicable)
+
+- Point estimates: match within 1e-6
+- Standard errors: match within 1e-4
+- Coverage rates: within ± 0.01

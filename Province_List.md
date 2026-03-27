@@ -1,0 +1,5 @@
+- First Tier: Beijing Shanghai
+- Second Tier: Tianjin, Jiangsu, Zhejiang, Guangdong
+- Third Tier: Liaoning, Fujian, Shandong
+- Forth Tier: Hebei, Shanxi, Jilin, Heilongjiang, Anhui, Jiangxi, Henan, Hubei, Hunan, Hainan
+- Fifth Tier: Chongqing, Sichuan, Guizhou, Yunnan, Shanxi, Gansu, Qinghai

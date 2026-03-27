@@ -1,69 +1,94 @@
 ---
 paths:
-  - "Figures/**/*"
-  - "Quarto/**/*.qmd"
-  - "Slides/**/*.tex"
+  - "Paper/**/*.tex"
+  - "Results/**"
+  - "Code/**"
+  - "Figures/**"
 ---
 
 # Single Source of Truth: Enforcement Protocol
 
-**The Beamer `.tex` file is the authoritative source for ALL content.** Everything else is derived.
+**`Paper/main.tex` is the authoritative artifact.** All tables and figures flow into it from code.
 
 ## The SSOT Chain
 
+```text
+Raw data (external / Data/raw/ — gitignored)
+  │
+  ↓  Code/Python/  (geodata cleaning, satellite processing)
+  │
+Data/processed/  (committed small datasets)
+  │
+  ↓  Code/R/ or Code/Stata/  (econometric analysis)
+  │
+Results/Tables/  (generated .tex tables)
+Results/Figures/ (generated .pdf/.png figures)
+  │
+  ↓  \input{} / \includegraphics{} in Paper/
+  │
+Paper/main.tex  ← SOURCE OF TRUTH
+  │
+  └── Paper/main.pdf  (compiled output — derived)
 ```
-Beamer .tex (SOURCE OF TRUTH)
-  ├── extract_tikz.tex → PDF → SVGs (derived)
-  ├── Quarto .qmd → HTML (derived)
-  ├── Bibliography_base.bib (shared)
-  └── Figures/LectureN/*.rds → plotly charts (data source)
 
-NEVER edit derived artifacts independently.
-ALWAYS propagate changes from source → derived.
-```
+**NEVER edit tables or figures in `Results/` by hand.**
+**ALWAYS regenerate from code.**
 
 ---
 
-## TikZ Freshness Protocol (MANDATORY)
+## Data Provenance Protocol (MANDATORY)
 
-**Before using ANY TikZ SVG in a Quarto slide, verify it matches the current Beamer source.**
+Before any empirical results appear in the paper, verify:
+
+1. The generating script exists in `Code/` and runs clean
+2. The output lands in `Results/Tables/` or `Results/Figures/`
+3. The `\input{}` or `\includegraphics{}` path in `Paper/` matches exactly
+4. The script has `set.seed()` or `random_state=` for any stochastic step
+
+---
+
+## Results Freshness Protocol
+
+**Before citing a number in the paper, verify it matches the current code output.**
 
 ### Diff-Check Procedure
 
-1. Read the TikZ block from the Beamer `.tex` file
-2. Read the corresponding block from `Figures/LectureN/extract_tikz.tex`
-3. Compare EVERY coordinate, label, color, opacity, and anchor point
-4. If ANY difference exists: update `extract_tikz.tex` from Beamer, recompile, regenerate SVGs
-5. Only then reference the SVG in the QMD
+1. Identify the table/figure referenced in the paper
+2. Find the generating script in `Code/`
+3. Confirm the script was run after the last data or specification change
+4. If uncertain: re-run the script, check the output matches what's in the paper
 
-### When to Re-Extract
+### When to Regenerate All Results
 
-Re-extract ALL TikZ diagrams when:
-- The Beamer `.tex` file has been modified since last extraction
-- Starting a new Quarto translation
-- Any TikZ-related quality issue is reported
-- Before any commit that includes QMD changes
+- After any change to `Data/processed/`
+- After any change to the sample definition
+- After any change to the econometric specification
+- Before any submission or major revision
 
 ---
 
-## Environment Parity (MANDATORY)
+## Content Fidelity Checklist (Before Submission)
 
-**Every Beamer environment MUST have a CSS equivalent before translation begins.**
-
-1. Scan the Beamer source for all custom environments
-2. Check each against your theme SCSS file
-3. If ANY environment is missing from SCSS, create it BEFORE translating
+```text
+[ ] All tables in paper have a generating script in Code/
+[ ] All figures in paper have a generating script in Code/
+[ ] No number in the paper was typed manually (all from \input or \num{})
+[ ] Bibliography_base.bib has every cited reference
+[ ] No \cite{} keys missing from .bib
+[ ] Data/processed/ files match what scripts expect
+[ ] Paper compiles clean (no undefined references, no overfull hbox > 10pt)
+```
 
 ---
 
-## Content Fidelity Checklist
+## Conference Slides (Secondary Artifact)
 
+Slides in `Slides/` are a secondary artifact derived from the paper.
+
+```text
+Paper/main.tex  (source)
+  └── Slides/slides.tex  (derived — must not add unreported results)
 ```
-[ ] Frame count: Beamer frames == Quarto slides
-[ ] Math check: every equation appears with identical notation
-[ ] Citation check: every \cite has a @key in Quarto
-[ ] Environment check: every Beamer box has CSS equivalent
-[ ] Figure check: every \includegraphics has SVG or plotly equivalent
-[ ] No added content: Quarto does not invent slides not in Beamer
-[ ] No dropped content: every Beamer idea appears in Quarto
-```
+
+- Never present results in slides that haven't been verified in the paper
+- Slide figures should be the same files as `Results/Figures/` (or copies)

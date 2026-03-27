@@ -54,3 +54,31 @@ CLAUDE.local.md
 # Output artifacts — uncomment lines below based on your preference
 # *.rds
 # output/**/*.rds
+
+# ==============================================================================
+# Research Data (land misallocation paper)
+# ==============================================================================
+
+# Raw geodata — never commit (too large, proprietary)
+Data/raw/
+*.tif
+*.tiff
+*.img
+*.hdf
+*.nc
+
+# Shapefiles — gitignored by default; commit processed ones intentionally
+*.shp
+*.shx
+*.dbf
+*.prj
+*.sbx
+*.sbn
+*.cpg
+
+# Large Stata datasets — commit small processed ones explicitly
+*.dta
+
+# Python artifacts
+.ipynb_checkpoints/
+*.egg-info/

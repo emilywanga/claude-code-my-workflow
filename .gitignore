@@ -60,6 +60,7 @@ CLAUDE.local.md
 # ==============================================================================
 
 # Raw geodata — never commit (too large, proprietary)
+geodata/
 Data/raw/
 *.tif
 *.tiff
